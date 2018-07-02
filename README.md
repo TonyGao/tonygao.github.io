@@ -1,37 +1,24 @@
-## Welcome to GitHub Pages
+# Papyrus - Jekyll Theme
 
-You can use the [editor on GitHub](https://github.com/TonyGao/tonygao.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Papyrus is a responsive three-column Jekyll theme with classic styling and careful typographic details.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Loosely based on the [Onelight Atom Theme](https://github.com/atom/one-light-ui).
 
-### Markdown
+## Install and Test
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+1. Download or clone the repo
+  - `git clone git@github.com:hugoferreira/papyrus-theme.git`
+2. Enter the folder
+  - `cd papyrus-theme/`
+3. Start Jekyll server
+  - `jekyll serve --watch`
+4. Access via
+  - http://127.0.0.1:4000/papyrus-theme/
 
-```markdown
-Syntax highlighted code block
+## Demo
 
-# Header 1
-## Header 2
-### Header 3
+- http://hugosereno.eu
 
-- Bulleted
-- List
+## Preview
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/TonyGao/tonygao.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+![Theme preview](/assets/screenshot.png)
