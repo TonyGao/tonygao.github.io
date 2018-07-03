@@ -1,0 +1,132 @@
+---
+layout: post
+title: Sleeping Beauty
+date: 2016-05-28 15:46
+comments: true
+external-url:
+categories: Mathematics
+---
+
+Symfony 设计模式——单件模式
+============
+
+有些对象其实我们只需要一个，比如：线程池、缓存、对话框、处理偏好设置和注册表的对象、日志对象，充当打印机、显卡等设备的驱动程序的对象。多个实例反而会造成很多问题。
+
+单件模式的目标：确保一个类只有一个实例，并提供一个全局访问点。
+
+**涉及Symfony组件：HttpFoundation**
+
+MimeTypeGuesser.php
+
+一个单件MIME类型猜测器，默认所有的MIME类型猜测器都由已安装的框架提供（如果在当前 OS/PHP 安装中可得的话）。
+
+你可以通过此单件实例的 register() 方法来注册自定义猜测器。自定义猜测器总是在默认的猜测器之前被调用。
+
+```php
+ $guesser = MimeTypeGuesser::getInstance();
+ $guesser->register(new MyCustomMimeTypeGuesser());
+```
+
+```php
+class MimeTypeGuesser implements MimeTypeGuesserInterface
+{
+    /**
+     * 单件实例
+     *
+     * @var MimeTypeGuesser
+     */
+    private static $instance = null;
+
+    /**
+     * 所有已注册的 MimeTypeGuesserInterface 实例。
+     *
+     * @var array
+     */
+    protected $guessers = array();
+
+    /**
+     * 返回此单件实例。
+     *
+     * @return self
+     */
+    public static function getInstance()
+    {
+        if (null === self::$instance) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+    /**
+     * 重置此单件实例
+     */
+    public static function reset()
+    {
+        self::$instance = null;
+    }
+
+    /**
+     * 登记所有本机提供的MIME类型猜测器
+     */
+    private function __construct()
+    {
+        if (FileBinaryMimeTypeGuesser::isSupported()) {
+            $this->register(new FileBinaryMimeTypeGuesser());
+        }
+
+        if (FileinfoMimeTypeGuesser::isSupported()) {
+            $this->register(new FileinfoMimeTypeGuesser());
+        }
+    }
+
+    /**
+     * 登记一个新的MIME类型猜测器。
+     *
+     * 当猜测时，这个猜测器优先于之前注册的。
+     */
+    public function register(MimeTypeGuesserInterface $guesser)
+    {
+        array_unshift($this->guessers, $guesser);
+    }
+
+    /**
+     * 尝试猜测给定文件的MIME类型
+     *
+     * 该文件按照注册的相反顺序传递给每个注册的MIME类型猜测器（最后注册的先查询）。
+     * 一旦猜测者返回一个不为 NULL 的值，该方法终止并返回值。
+     * 
+     * @param string $path 到文件的路径
+     *
+     * @return string MIME 类型或 NULL，如果什么也猜不到的话
+     *
+     * @throws \LogicException
+     * @throws FileNotFoundException
+     * @throws AccessDeniedException
+     */
+    public function guess($path)
+    {
+        if (!is_file($path)) {
+            throw new FileNotFoundException($path);
+        }
+
+        if (!is_readable($path)) {
+            throw new AccessDeniedException($path);
+        }
+
+        if (!$this->guessers) {
+            $msg = 'Unable to guess the mime type as no guessers are available';
+            if (!FileinfoMimeTypeGuesser::isSupported()) {
+                $msg .= ' (Did you enable the php_fileinfo extension?)';
+            }
+            throw new \LogicException($msg);
+        }
+
+        foreach ($this->guessers as $guesser) {
+            if (null !== $mimeType = $guesser->guess($path)) {
+                return $mimeType;
+            }
+        }
+    }
+}
+```
