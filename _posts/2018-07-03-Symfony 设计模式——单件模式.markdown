@@ -4,7 +4,7 @@ title: Symfony 设计模式——单件模式
 date: 2018-07-03 00:00
 comments: true
 external-url:
-categories: Symfony, 设计模式
+categories: 设计模式
 ---
 
 Symfony 设计模式——单件模式
