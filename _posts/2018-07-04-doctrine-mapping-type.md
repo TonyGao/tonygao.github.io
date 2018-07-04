@@ -7,6 +7,8 @@ external-url:
 categories: Doctrine
 ---
 
+**Doctrine 映射类型**
+
 - string: 字符串
 - integer: 正整型
 - smallint: 微整(割双眼皮之类的)
