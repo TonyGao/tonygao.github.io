@@ -94,7 +94,6 @@ function storeServiceDependency(id: Function, target: Function, index: number, o
 * 根据已有信息计算依赖，构造有向图
 * 找出出度为0的节点，并从这些几点开始，用 instantiationService.createInstance(Client) 初始化实例
 ![img]({{site.url}}/assets/images/2021-6/instantiationService.createInstance.png)
-<img src="../assets/images/2021-6/instantiationService.createInstance.png" width="80%">
 
 其中，Class-A 为当前需要实例化的类，graph生成完毕之后，根据规则，先实例化 Dependence-Class-C、Dependence-Class-E、Dependence-Class-F，再实例化 Dependence-Class-B、Dependence-Class-D, 最后才实例化 Class-A
 
@@ -237,7 +236,7 @@ VSCode打包脚本位于build目录下，在执行 gulp watch 之后，gulp会�
 
 VSCode可以调试javascript, python, php, c各种语言，而实现这些调试基础就是DAP协议，官方对DAP的图示如下：
 
-<img src="../assets/images/2021-6/debug-arch1.png" width="80%">
+<img src="{{site.url}}/assets/images/2021-6/debug-arch1.png" width="80%">
 
 VSCode 定义了一种抽象的协议即DAP，并实现了一种通用的调试UI,VSCode使用该协议与各种语言的调试进程通信，但是，各种语言不会实现DAP协议，因此，需要一个Adapter，即Debug Adapter(DA)，DA运行在一个单独的进程里面，与调试进程通信。
 
