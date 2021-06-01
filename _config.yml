@@ -2,9 +2,9 @@
 title: "TonyGao的个人博客与记录"
 author: "TonyGao"
 description: "本博客以技术文章为主，另外记录博主的一些生活:)"
-keywords: "网站开发, Web, PHP, Javascript, Symfony"
+keywords: "Web, PHP, Javascript, Symfony, Node.js, Electron"
 biography: "在做捷效办公 <a href='https://jieoa.com/'>jieoa.com</a>，<a href='https://github.com/TonyGao'>我的Github</a>"
-colophon: "© 2018 by Tony Gao.<br>博客内容协议 <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>Creative Commons (BY-NC-SA)</a> <br>本站基于 <a href='https://pages.github.com/'>Github Pages</a> 使用 <a href='http://jekyllrb.com/'>Jekyll</a> 创建。"
+colophon: "© 2021 by Tony Gao.<br>博客内容协议 <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>Creative Commons (BY-NC-SA)</a> <br>本站基于 <a href='https://pages.github.com/'>Github Pages</a> 使用 <a href='http://jekyllrb.com/'>Jekyll</a> 创建。"
 
 baseurl: ""
 url: "https://tonygao.github.io/"
