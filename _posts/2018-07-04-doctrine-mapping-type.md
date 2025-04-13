@@ -4,7 +4,7 @@ title: Doctrine Mapping Type
 date: 2018-07-04 00:00
 comments: true
 external-url:
-categories: Symfony
+categories: 日常记录
 ---
 
 **Doctrine 映射类型**
