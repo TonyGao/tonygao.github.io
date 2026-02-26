@@ -61,9 +61,9 @@ body {
       gap: 12px;
 
       .logo-icon {
-        width: 32px;
-        height: 32px;
-        background: #2d2d2d;
+        width: 48px;
+        height: 48px;
+        background: transparent;
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -71,6 +71,7 @@ body {
         color: $accent-color;
         font-weight: bold;
         font-size: 18px;
+        overflow: hidden;
       }
 
       .brand-text {
@@ -78,18 +79,18 @@ body {
         flex-direction: column;
 
         h1 {
-          font-size: 18px;
+          font-size: 20px;
           font-weight: 700;
           margin: 0;
-          letter-spacing: 2px;
-          text-transform: uppercase;
+          letter-spacing: 1px;
+          text-transform: none;
         }
 
         span {
-          font-size: 10px;
+          font-size: 13px;
           color: $secondary-text;
           letter-spacing: 1px;
-          text-transform: uppercase;
+          margin-top: 2px;
         }
       }
     }
@@ -383,8 +384,10 @@ footer {
   font-size: 0.85em;
   color: #999;
   font-family: "Courier New", monospace;
-  text-transform: uppercase;
   letter-spacing: 1px;
+  .copyright {
+    text-transform: none;
+  }
 }
 
 // Responsive
