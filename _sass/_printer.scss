@@ -1,0 +1,676 @@
+// Variables
+$printer-bg: #f2f0ea;
+$paper-bg: #ffffff;
+$grid-color: rgba(0, 0, 0, 0.05);
+$accent-color: #ff6b35; // Orange from the logo
+$text-color: #333;
+$secondary-text: #666;
+
+// Global Styles
+body {
+  background-color: #e5e5e5;
+  background-image:
+    linear-gradient($grid-color 1px, transparent 1px),
+    linear-gradient(90deg, $grid-color 1px, transparent 1px);
+  background-size: 20px 20px;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  color: $text-color;
+  margin: 0;
+  padding: 20px;
+}
+
+// Printer Container
+.printer-container {
+  max-width: 800px;
+  margin: 40px auto;
+  position: relative;
+}
+
+// Printer Head (The device part)
+.printer-head {
+  background-color: $printer-bg;
+  border-radius: 24px;
+  padding: 24px 32px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.05); // Inner shadow for depth
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  .head-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+        background: #2d2d2d;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $accent-color;
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+
+        h1 {
+          font-size: 18px;
+          font-weight: 700;
+          margin: 0;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+
+        span {
+          font-size: 10px;
+          color: $secondary-text;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    .status-light {
+      width: 16px;
+      height: 16px;
+      background: radial-gradient(
+        circle at 30% 30%,
+        #a7f3d0,
+        #22c55e
+      ); // Skeuomorphic LED
+      border-radius: 50%;
+      box-shadow:
+        0 0 5px #4ade80,
+        inset 0 1px 2px rgba(255, 255, 255, 0.8),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+        0 1px 1px rgba(0, 0, 0, 0.1); // Bezel shadow
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      animation: blink 2s infinite;
+    }
+  }
+
+  .head-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #e8e6df; // Darker than head bg
+    padding: 8px 12px;
+    border-radius: 12px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); // Inner shadow
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); // Highlight at bottom
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+
+      a {
+        text-decoration: none;
+        color: #555;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 8px 16px;
+        border-radius: 6px;
+        background: linear-gradient(to bottom, #fcfcfc, #f0f0f0);
+        box-shadow:
+          0 1px 2px rgba(0, 0, 0, 0.1),
+          0 2px 0 #dcdcdc,
+          // 3D thickness
+          inset 0 1px 0 rgba(255, 255, 255, 1);
+        border: 1px solid #dcdcdc;
+        transition: all 0.1s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+
+        &:hover {
+          background: #fff;
+          transform: translateY(-1px);
+          box-shadow:
+            0 2px 4px rgba(0, 0, 0, 0.1),
+            0 2px 0 #dcdcdc,
+            inset 0 1px 0 rgba(255, 255, 255, 1);
+        }
+
+        &.active,
+        &:active {
+          background: #e6e6e6;
+          box-shadow:
+            inset 0 1px 3px rgba(0, 0, 0, 0.1),
+            0 0 0 transparent; // Remove thickness
+          transform: translateY(2px); // Press down
+          color: $text-color;
+        }
+      }
+    }
+
+    .head-actions {
+      display: flex;
+      gap: 8px;
+
+      button {
+        background: linear-gradient(to bottom, #fcfcfc, #f0f0f0);
+        border: 1px solid #dcdcdc;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 6px;
+        color: #555;
+        box-shadow:
+          0 1px 2px rgba(0, 0, 0, 0.1),
+          0 2px 0 #dcdcdc,
+          // 3D thickness
+          inset 0 1px 0 rgba(255, 255, 255, 1);
+        transition: all 0.1s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          background: #fff;
+          transform: translateY(-1px);
+        }
+
+        &:active {
+          background: #e6e6e6;
+          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+          transform: translateY(2px);
+        }
+      }
+    }
+  }
+
+  // The slot where paper comes out
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    right: 20px;
+    height: 20px;
+    background: #e0ded8;
+    border-radius: 0 0 10px 10px;
+    z-index: -1;
+  }
+}
+
+// Printer Paper Wrapper
+.printer-paper-wrapper {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  margin-top: -15px;
+  overflow: hidden; // Hide the paper when it's "inside"
+  padding-bottom: 20px; // Space for shadow
+}
+
+// Printer Paper (Content)
+.printer-paper {
+  background-color: $paper-bg;
+  width: 94%;
+  margin: 0 auto;
+  padding: 60px 50px 80px; // Top padding to clear the head slightly
+  position: relative;
+  // top: -15px; // Handled by wrapper
+  z-index: 5;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  min-height: 600px;
+
+  // Printing Animation
+  // Slower, linear animation to mimic mechanical paper feed
+  animation: print-reveal 8s linear forwards;
+  animation-delay: 0.5s;
+  transform: translateY(-100%); // Start hidden (pulled up)
+
+  &.fast-print {
+    animation-duration: 2s !important; // Much faster for sub-pages, forced
+  }
+
+  // Paper texture overlay (subtle)
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.02'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 2.24 5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 2.24 5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'/%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  // Jagged edge at bottom
+  &::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background:
+      linear-gradient(
+        45deg,
+        transparent 33.333%,
+        $paper-bg 33.333%,
+        $paper-bg 66.667%,
+        transparent 66.667%
+      ),
+      linear-gradient(
+        -45deg,
+        transparent 33.333%,
+        $paper-bg 33.333%,
+        $paper-bg 66.667%,
+        transparent 66.667%
+      );
+    background-size: 20px 40px;
+    background-position: 0 -20px;
+  }
+
+  // Typography adjustments for the paper look
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $text-color;
+    font-family:
+      "Georgia", "Times New Roman", serif; // Serif for headings looks more like print
+  }
+
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    border-bottom: 2px solid $text-color;
+    padding-bottom: 10px;
+  }
+
+  p {
+    line-height: 1.8;
+    margin-bottom: 1.5em;
+    font-size: 1.1em;
+  }
+
+  a {
+    color: $accent-color;
+    text-decoration: none;
+    border-bottom: 1px dotted $accent-color;
+
+    &:hover {
+      color: darken($accent-color, 10%);
+      border-bottom-style: solid;
+    }
+  }
+
+  // Article List styling
+  .post-item {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px dashed #ddd;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .post-meta {
+      font-size: 0.9em;
+      color: $secondary-text;
+      font-family: "Courier New", monospace; // Monospace for dates
+      margin-bottom: 8px;
+    }
+
+    .post-title {
+      font-size: 1.8em;
+      margin: 0 0 10px;
+      font-weight: 700;
+
+      a {
+        color: $text-color;
+        border: none;
+
+        &:hover {
+          color: $accent-color;
+        }
+      }
+    }
+
+    .post-excerpt {
+      color: #555;
+    }
+
+    .read-more {
+      font-size: 0.9em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 10px;
+      display: inline-block;
+    }
+  }
+}
+
+// Footer on paper
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 2px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85em;
+  color: #999;
+  font-family: "Courier New", monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .printer-head {
+    padding: 16px;
+
+    .head-top {
+      margin-bottom: 10px;
+    }
+
+    .head-nav {
+      overflow-x: auto;
+
+      .nav-links {
+        a {
+          padding: 6px 12px;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+
+  .printer-paper {
+    width: 100%;
+    padding: 30px 20px 60px;
+  }
+}
+
+// Animations
+@keyframes print-reveal {
+  0% {
+    transform: translateY(-98%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 4px #4ade80;
+  }
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 0 #4ade80;
+  }
+}
+
+// Code Viewer Styles
+.code-viewer-expand-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+  z-index: 10;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  opacity: 0; // Hide by default
+
+  &:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Show button on hover of the code block
+div.highlighter-rouge:hover .code-viewer-expand-btn,
+div.highlight:hover .code-viewer-expand-btn {
+  opacity: 1;
+}
+
+// Modal
+.code-viewer-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #1e1e1e; // VS Code Dark background
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+
+  &.active {
+    display: flex;
+  }
+
+  .code-viewer-content {
+    background: #1e1e1e;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    border: none;
+
+    .code-viewer-header {
+      padding: 10px 20px;
+      border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #252526; // VS Code Header background
+      color: #cccccc;
+
+      .code-viewer-title {
+        font-weight: normal;
+        color: #cccccc;
+        font-size: 14px;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+      }
+
+      .code-viewer-close {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #cccccc;
+        padding: 4px;
+        border-radius: 4px;
+
+        &:hover {
+          background: #333;
+          color: #fff;
+        }
+      }
+    }
+
+    .code-viewer-body {
+      flex: 1;
+      padding: 0;
+      overflow: auto;
+      background: #1e1e1e; // Editor background
+
+      pre {
+        margin: 0;
+        padding: 20px;
+        height: 100%;
+        overflow: auto;
+        font-family:
+          "Fira Code", "Consolas", "Monaco", "Andale Mono", monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        border: none;
+        border-radius: 0;
+        color: #d4d4d4; // Default text color
+        background: transparent !important; // Override pre background
+      }
+
+      // Lightbox Styles
+      #lightbox-overlay {
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        z-index: 99999;
+      }
+
+      #lightbox-overlay img {
+        max-width: 90vw;
+        max-height: 90vh;
+        object-fit: contain;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        border: 5px solid #fff;
+      }
+
+      // General Post Image Styles for Lightbox Trigger
+      .post-content img,
+      .page-content img {
+        max-width: 100% !important; // Ensure image does not overflow its container width
+        width: auto !important; // Allow width to adjust proportionally
+        height: auto !important; // Maintain aspect ratio
+        max-height: 500px !important; // Limit height
+        object-fit: contain !important; // Ensure the entire image is visible within the box
+        object-position: center !important; // Center the image
+        border: 1px solid #ddd;
+        padding: 5px;
+        background-color: #fff;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+        display: block !important;
+        margin: 20px auto !important;
+        cursor: zoom-in;
+
+        &:hover {
+          transform: scale(1.02);
+          box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+          border-color: #bbb;
+        }
+      }
+
+      // Custom Syntax Highlighting Overrides for the Viewer (VS Code Dark Theme imitation)
+      .highlight {
+        color: #d4d4d4;
+
+        .c,
+        .c1,
+        .cm {
+          color: #6a9955;
+          font-style: italic;
+        } // Comment
+        .k,
+        .kd,
+        .kn,
+        .kp,
+        .kr,
+        .kt {
+          color: #569cd6;
+          font-weight: bold;
+        } // Keyword
+        .s,
+        .sa,
+        .sb,
+        .sc,
+        .dl,
+        .sd,
+        .s2,
+        .se,
+        .sh,
+        .si,
+        .sx,
+        .sr,
+        .s1,
+        .ss {
+          color: #ce9178;
+        } // String
+        .na,
+        .nc,
+        .nd,
+        .ne,
+        .nf,
+        .nx {
+          color: #dcdcaa;
+        } // Function/Class/Attribute
+        .nt,
+        .nv,
+        .vc,
+        .vg,
+        .vi {
+          color: #9cdcfe;
+        } // Variable/Tag
+        .m,
+        .mb,
+        .mf,
+        .mh,
+        .mi,
+        .il,
+        .mo {
+          color: #b5cea8;
+        } // Number
+        .o,
+        .ow {
+          color: #d4d4d4;
+        } // Operator
+        .p {
+          color: #ffd700;
+        } // Punctuation
+        .gd {
+          color: #f44747;
+        } // Deleted
+        .gi {
+          color: #6a9955;
+        } // Inserted
+        .ge {
+          font-style: italic;
+        } // Emph
+        .gs {
+          font-weight: bold;
+        } // Strong
+      }
+    }
+  }
+}

@@ -1,8 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   {% include head.html %}
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <body>
-    {{ content }}
-    {% include footer.html %}
+    <div class="printer-container">
+      {% include printer-head.html %}
+
+      <div class="printer-paper-wrapper {% if page.url != '/' %}fast-print{% endif %}">
+        <div class="printer-paper">{{ content }} {% include footer.html %}</div>
+      </div>
+    </div>
+    
+    <!-- Code Viewer Script -->
+    <script src="{{ "/assets/js/code-viewer.js" | prepend: site.baseurl }}"></script>
+    <!-- Daily Quote Script -->
+    <script src="{{ "/assets/js/quotes.js" | prepend: site.baseurl }}"></script>
+    <!-- Lightbox Script -->
+    <script src="{{ "/assets/js/lightbox.js" | prepend: site.baseurl }}"></script>
   </body>
 </html>

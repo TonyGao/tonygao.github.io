@@ -1,0 +1,36 @@
+
+<div class="printer-head">
+  <div class="head-top">
+    <a href="{{ "/" | prepend: site.baseurl }}" style="text-decoration: none; color: inherit;">
+      <div class="brand">
+        <div class="logo-icon">
+          <img src="{{ "/assets/images/dog215.png" | prepend: site.baseurl }}" alt="Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+        </div>
+        <div class="brand-text">
+          <h1>TonyG</h1>
+          <span>热爱、生活、关于</span>
+        </div>
+      </div>
+    </a>
+    <div class="status-light" title="System Online"></div>
+  </div>
+  
+  <div class="head-nav">
+    <nav class="nav-links">
+      <a href="{{ "/" | prepend: site.baseurl }}" class="{% if page.url == '/' %}active{% endif %}">首页</a>
+      <a href="{{ "/category/life" | prepend: site.baseurl }}" class="{% if page.url contains '/category/life' %}active{% endif %}">生活</a>
+      <a href="{{ "/category/tech" | prepend: site.baseurl }}" class="{% if page.url contains '/category/tech' %}active{% endif %}">技术</a>
+      <a href="{{ "/projects" | prepend: site.baseurl }}" class="{% if page.url contains '/projects' %}active{% endif %}">作品</a>
+      <a href="{{ "/about" | prepend: site.baseurl }}" class="{% if page.url contains '/about' %}active{% endif %}">关于</a>
+    </nav>
+    <div class="head-actions">
+      <button title="Print Mode">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

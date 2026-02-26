@@ -1,58 +1,23 @@
 <footer>
-  <div class="container">
-    <div class="row biography">
-      <div class="col-sm-4">
-        <h2>who am i</h2>
-        <p>{{ site.biography }}</p>
-      </div>
-      <div class="col-sm-4">
-        <h2>what is this</h2>
-        <p>{{ site.description }}</p>
-      </div>
-      <div class="col-sm-4">
-        <h2>where am i</h2>
-        <p>天津市塘沽区</p>
-          {% if site.email %}
-          <div>
-            <a href="mailto:{{ site.email }}">
-              <span class="username">{{ site.email }}</span>
-            </a>
-          </div>
-          {% endif %}
-          {% if site.github_username %}
-          <div>
-            <a href="https://github.com/{{ site.github_username }}">
-              <span class="username">github//{{ site.github_username }}</span>
-            </a>
-          </div>
-          {% endif %}
-          {% if site.twitter_username %}
-          <div>
-            <a href="https://twitter.com/{{ site.twitter_username }}">
-              <span class="username">twitter//{{ site.twitter_username }}</span>
-            </a>
-          </div>
-          {% endif %}
-          {% if site.linkedin_username %}
-          <div>
-            <a href="https://id.linkedin.com/in/{{ site.linkedin_username }}">
-              <span class="username">linkedin//{{ site.linkedin_username }}</span>
-            </a>
-          </div>
-          {% endif %}
-          {% if site.facebook_username %}
-          <div>
-            <a href="https://www.facebook.com/{{ site.facebook_username }}">
-              <span class="username">facebook//{{ site.facebook_username }}</span>
-            </a>
-          </div>
-          {% endif %}
-      </div>
+  <div
+    style="
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+    "
+  >
+    <div class="copyright">&copy; {{ site.time | date: '%Y' }} TonyG</div>
+    <div class="social-links" style="display: flex; align-items: center">
+      {% if site.github_username %}
+      <a href="https://github.com/{{ site.github_username }}">GITHUB</a>
+      {% endif %} {% if site.twitter_username %}
+      <span style="margin: 0 5px; color: #ccc">/</span>
+      <a href="https://twitter.com/{{ site.twitter_username }}">X</a>
+      {% endif %}
+
+      <span style="margin: 0 5px; color: #ccc">/</span>
+      <a href="mailto:linuxertony@163.com">EMAIL</a>
     </div>
-    {% if site.colophon %}
-    <div class="row copyright">
-      <center>{{ site.colophon }}</center>
-    </div>
-    {% endif %}
   </div>
 </footer>
